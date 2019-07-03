@@ -28,10 +28,16 @@ namespace WorkingWithWPFDataGrid.ViewModel {
 
         // method is called after a DataColumn is added to the DataTable
         private void UpdateDataGrid() {
-            var tempTable = DataSource;
-            DataSource = new DataTable();
-            DataSource = tempTable;
+            GenerateColumn = false;
+            GenerateColumn = true;
         }
+
+        private bool _generateColumns;
+        public bool GenerateColumn {
+            get { return _generateColumns; }
+            set { _generateColumns = value; OnPropertyChanged(); }
+        }
+
 
         private DataTable dataSource;
         public DataTable DataSource {
