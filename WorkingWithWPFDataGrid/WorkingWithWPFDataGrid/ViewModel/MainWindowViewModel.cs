@@ -5,6 +5,7 @@ using System.Windows.Input;
 using WorkingWithWPFDataGrid.Command;
 
 namespace WorkingWithWPFDataGrid.ViewModel {
+
     public class MainWindowViewModel : INotifyPropertyChanged {
         public MainWindowViewModel() {
             AddColumnCommand = new CommandImpl(AddColumnAction);
@@ -18,10 +19,18 @@ namespace WorkingWithWPFDataGrid.ViewModel {
         private void AddColumnAction() {
             DataSource.Columns.Add(new DataColumn(ColumnName));
             ColumnName = string.Empty;
+            UpdateDataGrid();
         }
 
         private void AddRowAction() {
             DataSource.Rows.Add(DataSource.NewRow());
+        }
+
+        // method is called after a DataColumn is added to the DataTable
+        private void UpdateDataGrid() {
+            var tempTable = DataSource;
+            DataSource = new DataTable();
+            DataSource = tempTable;
         }
 
         private DataTable dataSource;
