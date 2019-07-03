@@ -1,0 +1,30 @@
+﻿<Window x:Class="WorkingWithWPFDataGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkingWithWPFDataGrid"
+        mc:Ignorable="d"
+        Title="DataGrid App." Height="450" Width="800">
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="130" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid ItemsSource="{Binding DataSource}" Grid.RowSpan="5" Margin="2" Name="DataGrid" AutoGenerateColumns="{Binding GenerateColumn}" />
+
+        <TextBlock Text="Column Title:" Grid.Column="2" Margin="2,0" />
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="2,0" Text="{Binding ColumnName}" />
+
+        <Button Content="Add Column" Grid.Column="1" Grid.Row="2" Margin="2,4" Command="{Binding AddColumnCommand}"  />
+        <Button Content="Add Row" Grid.Column="1" Grid.Row="3" Margin="2,4" Command="{Binding AddRowCommand}" />
+    </Grid>
+</Window>
